@@ -73,6 +73,12 @@ async function startXeonBotInc() {
             console.log(err)
         }
     })
+    // BGM CODE
+for (let dark of darkqueen){
+    if (budy === dark){
+            result = fs.readFileSync(`./bgm/${dark}.mp3`)
+darkqueen.sendMessage(m.chat, { audio: result, mimetype: 'audio/mp4' , ptt: true }, { quoted: m})
+}
     //randoming function
 function pickRandom(list) {
 return list[Math.floor(list.length * Math.random())]
@@ -180,7 +186,11 @@ let docs = pickRandom(documents)
             else if (reason === DisconnectReason.timedOut) { console.log("🦄Connection TimedOut, Reconnecting..."); startXeonBotInc(); }
             else XeonBotInc.end(`🦄Unknown DisconnectReason: ${reason}|${connection}`)
         }
-        console.log('Connected...', update)
+	console.log('Installing Plugins ⬇', update)
+        console.log('Installed ✅', update)
+	console.log('Connecting To Whatsapp...', update)
+	console.log('Connected ✅', update)
+	console.log('Dark Queen Workin On Your Account 💃❤', update)
     })
 
     XeonBotInc.ev.on('creds.update', saveState)
