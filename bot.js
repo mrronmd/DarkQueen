@@ -192,8 +192,11 @@ let docs = pickRandom(documents)
 	console.log('Connected ✅', update)
 	console.log('Dark Queen Workin On Your Account 💃❤', update)
     })
-
-    XeonBotInc.ev.on('creds.update', saveState)
+//LOGIN MESSAGE
+		     await conn.sendMessage(conn.user.jid, fs.readFileSync("./XeonMedia/main.jpg"), MessageType.image, { caption: `*DARK QUEEN IS WORKING*`});
+   
+		  
+XeonBotInc.ev.on('creds.update', saveState)
 
     // Add Other
     /** Send Button 5 Image
