@@ -16,7 +16,8 @@
       "WHATSAPP_NUMBER": {
             "description": "",
             "required": true
-        },
+        }
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
