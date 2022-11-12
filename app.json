@@ -2,7 +2,7 @@
   "name": "DARK-QUEEN",
   "description": "MULTI DEVICE VERSION",
   "repository": "https://github.com/TimashaBuddilax/DarkQueen",
-  "logo": "https://telegra.ph/file/ab7cc697ac6fd4eb4809b.jpg",
+  "logo": "https://github.com/TimashaBuddilax/DarkQueen",
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
   "env": {
       "HEROKU_API_KEY": {
