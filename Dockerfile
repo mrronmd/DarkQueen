@@ -7,8 +7,6 @@ RUN apt-get update && \
   webp && \
   apt-get upgrade -y && \
   rm -rf /var/lib/apt/lists/*
- 
-RUN git clone https://github.com/TimashaBuddilax/DarkQueen
 
 COPY package.json .
 
