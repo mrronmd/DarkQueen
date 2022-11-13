@@ -2,7 +2,7 @@
   "name": "CheemsBot-MD",
   "version": "4.0.0",
   "description": "Automated whatsapp md bot created using nodejs",
-  "main": "xeon.js",
+  "main": "bot.js",
   "type": "commonjs",
   "scripts": {
     "start": "node bot.js"
