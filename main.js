@@ -7590,6 +7590,11 @@ break
                 XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
+	case 'mute': {
+	        if (!m.isGroup) return replay(`*This command is only working group*`)
+                if (!isAdmins) return replay(`*I'm not an admin here*`)
+                await XeonBotInc.groupSettingUpdate(m.chat, 'announcement').then((res) => reply('```🔇 Group chat has been muted!```')).catch((err) => reply(jsonformat(err))) }
+		break
             case 'quotesanime': case 'animequotes': case 'animequote': case 'quoteanime': {
             	 	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
@@ -8530,7 +8535,18 @@ View List Of Messages With ${prefix}listmsg`)
                     await XeonBotInc.sendButtonText(m.chat, buttons, `\`\`\`Please Wait, Looking For A Partner\`\`\``, XeonBotInc.user.name, m)
                 }
                 break
+		    case 'yt': case 'yts': {
+			                  if (!text) return replay(`Example : ${prefix + command} Anime Story Whatsapp`)
+                let yts = require("yt-search")
+                let search = await yts(text)
+                let teks = 'YouTube Search\n\n Result From '+text+'\n\n'
+                let no = 1
+                for (let i of search.all) {
+                    teks += `🔥 No : ${no++}\n🔥 Type : ${i.type}\n🔥 Video ID : ${i.videoId}\n🔥 Title : ${i.title}\n🔥 Views : ${i.views}\n🔥 Duration : ${i.timestamp}\n🔥 Uploaded On : ${i.ago}\n🔥 Author : ${i.author.name}\n🔥 Url : ${i.url}\n\n─────────────────\n\n`
+                }
+                XeonBotInc.sendMessage(m.chat, { image: { url: search.all[0].thumbnail },  caption: teks }, { quoted: m })
             }
+		    break
             case 'public': {
             	if (isBan) return reply(mess.ban)
 	if (isBanChat) return reply(mess.banChat)
@@ -8750,58 +8766,33 @@ sourceUrl: "https://telegra.ph/file/8737b098fd5702daeb7e0.jpg"
 XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
-case 'alive': case 'panel': case 'list': case 'menu': case 'help': case '?': {
-		if (isBan) return reply(mess.ban)	 			
-if (isBanChat) return reply(mess.banChat)
-XeonBotInc.sendMessage(from, { react: { text: `${global.reactmoji}`, key: m.key }})
-	                let btn = [{
-                                urlButton: {
-                                    displayText: 'YouTube 🍒',
-                                    url: `${websitex}`
-                                }
-                            }, {
-                                callButton: {
-                                    displayText: 'Script 🍜',
-                                    url: `${botscript}`
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'All Menu 🍱',
-                                    id: 'allmenu'
-                                }
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'List Menu 🍢',
-                                    id: 'command'
-                                }  
-                            }, {
-                                quickReplyButton: {
-                                    displayText: 'Owner 🤣',
-                                    id: 'owner'
-                                }
-                            }]
-                         let setbot = db.data.settings[botNumber]
-                        if (setbot.templateImage) {
-                        XeonBotInc.send5ButImg(m.chat, menulist, global.botname, global.thumb, btn, global.thumb)
-                        } else if (setbot.templateGif) {
-                        XeonBotInc.send5ButGif(m.chat, menulist, global.botname, global.vidmenu, btn, global.thumb)
-                        } else if (setbot.templateVid) {
-                        XeonBotInc.send5ButVid(m.chat, anu, global.botname, global.vidmenu, btn, global.thumb)
-                        } else if (setbot.templateVideo) {
-                        XeonBotInc.send5ButVid(m.chat, menulist, global.botname, global.vidmenu, btn, global.thumb)
-                        /////////} else if (setbot.templateMsg) {
-                        /////////XeonBotInc.send5ButMsg(m.chat, menulist, global.botname, btn)
-                        } else if (setbot.templateDocument) {
-                        let buttonmenu = [
-        	{ urlButton: { displayText: `YouTube 🍒`, url : `${websitex}` } },
-            { urlButton: { displayText: `Script 🍜`, url: `${botscript}` } },
-            { quickReplyButton: { displayText: `All Menu 🍱`, id: 'allmenu'} },
-            { quickReplyButton: { displayText: `List Menu 🍢`, id: 'command'} },
-            { quickReplyButton: { displayText: `Owner 🤣`, id: 'owner'} }
-        	]
-        	XeonBotInc.sendMessage(m.chat, { caption: menulist, document: fs.readFileSync('./XeonMedia/theme/cheems.xlsx'), mimetype: `${docs}`, fileName: `${ownername}`, templateButtons: buttonmenu, footer: `${botname}`, mentionedJid: [m.sender] })
-                        }
-                     }
+case 'alive': {
+          XeonBotInc.sendMessage(from, { react: { text: "💃", key: m.key }})
+darkqueenalive = `
+ʜᴇʏ ᴛʜᴇʀᴇ! ʙᴏᴛ ɪs ᴏɴʟɪɴᴇ ɴᴏᴡ💃❤
+
+*Developer:*Dark Queen Team
+
+*Github:*https://github.com/TimashaBuddilax/DarkQueen
+
+*Youtube channel:*https://www.youtube.com/channel/UCT5gM5QqhlAcdI8xOUJFLhg
+
+ᴛʜᴀɴᴋ ꜰᴏʀ ᴜsɪɴɢ ᴅᴀʀᴋ ǫᴜᴇᴇɴ💞`
+      
+           let buttons = [
+               {buttonId: `sysd`, buttonText: {displayText: 'sʏsᴛᴇᴍ sᴛᴀᴛᴇs'}, type: 1},
+               {buttonId: `dqversion`, buttonText: {displayText: 'ᴠᴇʀsɪᴏɴ'}, type: 1},
+                ]
+                
+                let buttonMessage = {
+                    image: fs.readFileSync('./XeonMedia/main.jpg'),
+                    caption: darkqueenalive,
+                    footer: 'ᴅᴀʀᴋ ǫᴜᴇᴇɴ ⦁ ᴍᴜʟᴛɪ ᴅᴇᴠɪᴄᴇ\nᴅᴇᴠᴇʟᴏᴘᴇʀ:ᴅᴀʀᴋ ǫᴜᴇᴇɴ ᴛᴇᴀᴍ',
+                    buttons: buttons,
+                    headerType: 4
+                }
+                XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
+            }
             break
                 case 'command': {
                 	   if (isBan) return reply(mess.ban)
