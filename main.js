@@ -7998,7 +7998,7 @@ case 'ttaud':{
     XeonBotInc.sendMessage(from, { audio: { url: xeonytiktokaudio }, mimetype: 'audio/mp4' }, { quoted: m })
    }
  break
-	case 'music': case 'play': case 'song': case 'ytplay': {
+	case 'song': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 let yts = require("yt-search")
@@ -8006,24 +8006,20 @@ let search = await yts(text)
 let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
 let ytvc = await hx.youtube(anu.url)
 let buttons = [
-{buttonId: `ytvd ${ytvc.link}`, buttonText: {displayText: '► Video'}, type: 1},
-{buttonId: `ytad ${ytvc.mp3}`, buttonText: {displayText: '♫ Audio'}, type: 1}
+{buttonId: `ytad ${ytvc.link}`, buttonText: {displayText: 'ᴀᴜᴅɪᴏ'}, type: 1},
+{buttonId: `ytdc ${ytvc.mp3}`, buttonText: {displayText: 'ᴅᴏᴄᴜᴍᴇɴᴛ'}, type: 1}
 ]
 let buttonMessage = {
 image: { url: anu.thumbnail },
-caption: `*| YOUTUBE PLAY |*
+caption: `
+*📄 Title :* ${anu.title}
 
-${global.themeemoji} Title : ${anu.title}
-${global.themeemoji} Ext : Search
-${global.themeemoji} ID : ${anu.videoId}
-${global.themeemoji} Duration : ${anu.timestamp}
-${global.themeemoji} Viewers : ${anu.views}
-${global.themeemoji} Uploaded : ${anu.ago}
-${global.themeemoji} Author : ${anu.author.name}
-${global.themeemoji} Channel : ${anu.author.url}
-${global.themeemoji} Description : ${anu.description}
-${global.themeemoji} Url : ${anu.url}`,
-footer: `${global.botname}`,
+*👁️ Views :* ${anu.views}
+
+*🎛️ Channel :* ${anu.author.url}
+
+*📖 Description :* ${anu.description}`,
+footer: `ᴅᴀʀᴋ ǫᴜᴇᴇɴ ⦁ ᴍᴜʟᴛɪ ᴅᴇᴠɪᴄᴇ\nᴅᴇᴠᴇʟᴏᴘᴇʀ:ᴅᴀʀᴋ ǫᴜᴇᴇɴ ᴛᴇᴀᴍ`,
 buttons: buttons,
 headerType: 4,
 contextInfo:{externalAdReply:{
@@ -8038,7 +8034,7 @@ sourceUrl: anu.url
 XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
 break
-case 'getmusic': case 'getvideo': case 'yt': case 'youtube': case 'ytvideo': case 'ytmp3': case 'ytmp4': case 'ytmusic': {
+case 'ytvvv': {
    if (isBan) return reply(mess.ban)	 			
 if (isBanChat) return reply(mess.banChat)
 if (!args[0]) return reply(mess.linkm)
@@ -8765,7 +8761,10 @@ sourceUrl: "https://telegra.ph/file/8737b098fd5702daeb7e0.jpg"
 }
 XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
 }
-break
+		    case 'dqversion': {
+			    XeonBotInc.sendMessage(from, { text: `*🧬 Dark Queen Version 🧬*\n\nInstalled version : 4.0.0v\n\nCheck github : https://github.com/TimashaBuddilax/DarkQueen` }, { quoted: m})
+        }
+    break
 case 'alive': {
           XeonBotInc.sendMessage(from, { react: { text: "💃", key: m.key }})
 darkqueenalive = `
@@ -8794,162 +8793,51 @@ darkqueenalive = `
                 XeonBotInc.sendMessage(m.chat, buttonMessage, { quoted: m })
             }
             break
-                case 'command': {
-                	   if (isBan) return reply(mess.ban)
-	if (isBanChat) return reply(mess.banChat)
+                case 'panel': {
 let template = await generateWAMessageFromContent(m.chat, proto.Message.fromObject({
                 listMessage :{
-                    title: `Hi ${pushname}`,
-                    description: `Please Choose The Menu\n\n`,
-                    buttonText: "Menu",
-                    footerText: `${global.botname}`,
+                    title: `📋 DARK QUEEN COMMAND LIST 💃🏻♥️`,
+                    description: `\n\n*Hello ${pushname}\n\n*Please choose a your command list.*`,
+                    buttonText: "Click Here",
+                    footerText: `ᴅᴀʀᴋ ǫᴜᴇᴇɴ ⦁ ᴍᴜʟᴛɪ ᴅᴇᴠɪᴄᴇ\nᴅᴇᴠᴇʟᴏᴘᴇʀ:ᴅᴀʀᴋ ǫᴜᴇᴇɴ ᴛᴇᴀᴍ`,
                     listType: "SINGLE_SELECT",
                     sections: [{
-								"title": "Initial Features Of Bot 🦄",
+							
+								"title": "DARK QUEEN MAIN COMMANDS LIST",
 								"rows": [
 									{
-										"title": "Other ☕",
-										"description": "Displays The List Of Other Features",
-										"rowId": `${prefix}othermenu`
-									}
+										"title": "Main Commands",
+										"description": "",
+										"rowId": `${prefix}maincmd`
+									},
+									{
+										"title": "Logo Commands",
+										"description": "",
+										"rowId": `${prefix}logocmd`
+										},
+									{
+										"title": "Download Commands",
+										"description": "",
+										"rowId": `${prefix}downcmd`
+										},
+										{
+										"title": "Admin Commands",
+										"description": "",
+										"rowId": `${prefix}admincmd`
+									},
+									{
+										"title": "Profile Commands",
+										"description": "",
+										"rowId": `${prefix}profilecmd`
+									},
 								]
 							},
-							{
-								"title": "Bot Features ❤️",
-								"rows": [
-									{
-										"title": "All Menu 🥀",
-										"description": "Displays The List Of All The Features!",
-										"rowId": `${prefix}allmenu`
-									},
-									{
-										"title": "Owner Menu 💠",
-										"description": "Displays The List Of Owner Features",
-										"rowId": `${prefix}ownermenu`
-										},
-									{
-										"title": "Group Menu ✨",
-										"description": "Displays The List Of Main Features",
-										"rowId": `${prefix}groupmenu`
-										},
-										{
-										"title": "Maker Menu 🌈",
-										"description": "Displays The List Of Logo Making Features",
-										"rowId": `${prefix}indomenu`
-									},
-									{
-										"title": "Sound Menu 🎵",
-										"description": "Displays The List Of Sound Features",
-										"rowId": `${prefix}soundmenu`
-									},
-									{
-										"title": "Download Menu ↘️",
-										"description": "Displays The List Of Download Features",
-										"rowId": `${prefix}downloadmenu`
-									},
-									{
-										"title": "Sticker Menu 🃏",
-										"description": "Displays The List Of Sticker Features",
-										"rowId": `${prefix}indomenu`
-									},
-									{
-										"title": "Search Menu 🔎",
-										"description": "Displays The List Of Searching Features",
-										"rowId": `${prefix}searchmenu`
-									},
-									{
-										"title": "Tool Menu ⚙️",
-										"description": "Displays The List Of Tool Features",
-										"rowId": `${prefix}toolmenu`
-									},
-									{
-										"title": "Random Image Menu 🌆",
-										"description": "Displays The List Of Random Image Features",
-										"rowId": `${prefix}randomimagemenu`
-									},
-									{
-										"title": "Image Effect Menu 🖼️",
-										"description": "Displays The List Of Image Effect Features",
-										"rowId": `${prefix}imageeffectmenu`
-									},
-										{
-											"title": "Anime Menu 😘",
-										"description": "Displays The List Of Random Anime Features",
-										"rowId": `${prefix}animemenu`
-										},
-										{
-											"title": "Emote Menu 😀",
-										"description": "Displays The List Of Emote Features",
-										"rowId": `${prefix}emotemenu`
-										},
-										{
-										"title": "Anime Sticker Menu ☺️",
-										"description": "Displays The List Of Anime Sticker Features",
-										"rowId": `${prefix}animestickermenu`
-									     },
-									{
-										"title": "Nsfw Menu 🤓",
-										"description": "Displays The List Of Nsfe Features",
-										"rowId": `${prefix}nsfwmenu`
-									     },
-										{
-											"title": "Fun Menu 🕺",
-										"description": "Displays The List Of Fun Features",
-										"rowId": `${prefix}funmenu`
-										},
-										{
-										"title": "Game Menu 🎮",
-										"description": "Displays The List Of Game Features",
-										"rowId": `${prefix}indomenu`
-									},
-										{
-											"title": "Convert Menu ⚒️",
-										"description": "Displays The List Of Convert Features",
-										"rowId": `${prefix}convertmenu`
-										},
-										{
-											"title": "Database Menu ♻️",
-										"description": "Displays The List Of Database Features",
-										"rowId": `${prefix}databasemenu`
-										},
-										{
-										"title": "Indo Menu  🦜",
-										"description": "Displays The List Of Indo Features",
-										"rowId": `${prefix}indomenu`
-									},
-										{
-											"title": "Horoscope Menu 🕊️",
-										"description": "Displays The List Of Horoscope Features",
-										"rowId": `${prefix}indohoroscopemenu`
-										}
-								]
-							},
-							{
-								"title": "Chat With Fellow Users 🌝",
-								"rows": [
-									{
-										"title": "Anonymous Chat Menu 🙎🏻‍♂️",
-										"description": "Displays The List Of Anonymous Chat Features",
-										"rowId": `${prefix}anonymousmenu`
-									}
-								]
-							},
-							{
-								"title": "Credit ©️",
-								"rows": [
-									{
-										"title": "Thanks To ❤️",
-										"description": "Displays The List Of Credit Of The Bot !!",
-										"rowId": `${prefix}tqtt`
-									}
-								]
-							}
 						],
           listType: 1
                 }
             }), {})
             XeonBotInc.relayMessage(m.chat, template.message, { messageId: template.key.id })
-            }
+		}
             break
 case 'allmenu':
 	   if (isBan) return reply(mess.ban)
